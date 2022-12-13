@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from django.http import request,HttpResponse
 from .models import Article
-from django.template.loader import render_to_string
 # Create your views here.
 def home(request):
-    obj = Article.objects.get(id=1)
+    obj = Article.objects.all()
     context = {
-        "id": obj.id,
-        "title": obj.title,
-        "desc": obj.desc,
+        'articles': obj
     }
-    return HttpResponse(render_to_string('home.html', context))
+    return HttpResponse(render(request,'home.html',context))
+
+def article_details(request,id=None):
+    article_obj = Article.objects.get(id=id)
+    context = {
+        'article': article_obj
+    }
+    return HttpResponse(render(request,'article.html',context))
