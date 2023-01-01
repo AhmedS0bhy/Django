@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+<form method="get" action="">
+    <input type="search"  name="q" >
+    <input type="submit">
+
+  {% if article != None%}
+    <h2> {{article.title}}</h2>
+    <h2> {{article.desc}}</h2>
+  {% endif %}
+</form>
+
+{% endblock content %}
